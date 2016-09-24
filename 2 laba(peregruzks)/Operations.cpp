@@ -9,14 +9,14 @@ String::String(int s)
 		m_cSize = s;
 		strcpy(this->m_cStr, "");
 	}
-	cout << "\nString was made\n";
+	//cout << "\nString was made\n";
 }
 String::String(const String& s)
 {
 	this->m_cStr = new char[s.m_cSize+1];
 	this->m_cSize = s.m_cSize;
 	strcpy(this->m_cStr, s.m_cStr);
-	cout << "\nCopy constuctor\n";
+	//cout << "\nCopy constuctor\n";
 }
 String::String(const char *s)
 {
@@ -31,7 +31,7 @@ String:: ~String()
 		delete[] m_cStr;
 		m_cStr = nullptr;
 	}
-	cout << "\nDestuctor\n";
+	//cout << "\nDestuctor\n";
 }
 String String:: operator =(const String& s)
 {
@@ -52,12 +52,12 @@ String String::operator = (const char * str)
 	strcpy(this->m_cStr, str);
 	return *this;
 }
-char String:: operator[](int i)
+char& String:: operator[](int i)
 {
 	if ((i >= 0) && (i < m_cSize))
 		return m_cStr[i];
 	else
-		return '\0';
+		return m_cStr[0];
 }
 String String :: operator ()(int a, int b)
 {
@@ -132,6 +132,55 @@ String  String::operator--()
 String String::operator--(int)
 {
 	return --(*this);
+}
+String String ::operator-(char c)
+{
+	char* p = nullptr;
+	String bufS(m_cSize);
+	strcpy(bufS.m_cStr, m_cStr);
+	while (1)
+	{
+		p=strchr(bufS.m_cStr, c);
+		if (!p)break;
+		for (int i = 0; p[i]; i++)
+		{
+			p[i] = p[i + 1];
+		}
+		bufS.m_cSize = bufS.m_cSize - 1;
+	}
+	return bufS;
+}
+String String ::operator-(const char* s)
+{
+	String bufS(m_cSize);
+	strcpy(bufS.m_cStr, m_cStr);
+	for (int i = 0; s[i] && bufS.m_cSize; i++)
+	{
+		bufS = bufS - s[i];
+	}
+	return bufS;
+}
+String String::operator-(const String& s)
+{
+	String bufS(m_cSize);
+	strcpy(bufS.m_cStr, m_cStr);
+	for (int i = 0; s.m_cStr[i]&&bufS.m_cSize; i++)
+	{
+		bufS=bufS - s.m_cStr[i];
+	}
+	return bufS;
+}
+String String ::operator -=(const String& s)
+{
+	return (*this) = (*this) - s;
+}
+String String::operator -=(const char * s)
+{
+	return (*this) = (*this) - s;
+}
+String String::operator -=(const char c)
+{
+	return (*this) = (*this) - c;
 }
 ostream& operator<<(ostream& os, const String& s)
 {

@@ -1,14 +1,20 @@
 #include "String.h"
 #include <cstring>
 #pragma warning (disable: 4996)
-int String::operator == (const String & tmp) const
+bool String::operator == (const String & tmp) const
 {
-	return strcmp(this->m_cStr, tmp.m_cStr);
+	if (!strcmp(this->m_cStr, tmp.m_cStr))
+		return true;
+	else
+		return false;
 	
 }
-int String::operator == (const char * tmp) const
+bool String::operator == (const char * tmp) const
 {
-	return strcmp(this->m_cStr, tmp);
+	if (!strcmp(this->m_cStr, tmp))
+		return true;
+	else
+		return false;
 }
 bool String::operator !=(const String& s)
 {
