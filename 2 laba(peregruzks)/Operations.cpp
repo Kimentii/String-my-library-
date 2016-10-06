@@ -191,12 +191,12 @@ String operator + (const char* s, String& Str)			//Глобальная перегрузка операто
 	nS += Str;											//Вызов перегрузки += для объектов.
 	return nS;
 }
-String operator + (char c, String& Str)
+String operator + (char c, String& Str)					//Глобальная пергегрузка оператора + с символом.
 {
-	char* bufS = new char[Str.m_cSize + 1];
-	bufS[0] = c;
-	bufS[1] = '\0';
-	strcat(bufS, Str.m_cStr);
+	char* bufS = new char[Str.m_cSize + 1];				//Создание новой строки.
+	bufS[0] = c;										//Добавление в нее символа.
+	bufS[1] = '\0';										//Закрытие сроки, чтобы strcat её видел.
+	strcat(bufS, Str.m_cStr);							//Скрепливание строк.
 	String nS(bufS);
 	delete[] bufS;
 	return nS;

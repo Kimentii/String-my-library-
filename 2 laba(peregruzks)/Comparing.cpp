@@ -25,7 +25,7 @@ bool String::operator != (const String& s)					//Перегрузка оператора != с объек
 }
 bool String::operator != (const char* str)					//Перегрузка оператора != со строкой.
 {
-	if (strcmp(this->m_cStr,str))
+	if (strcmp(this->m_cStr, str))
 		return true;
 	else
 		return false;
@@ -58,28 +58,28 @@ bool String :: operator < (const char* s)					//Перегрузка опертаора < с строкой
 	else
 		return false;
 }
-bool operator == (const char* s, String& Str)
+bool operator == (const char* s, String& Str)				//Глобальная пегрегрузка оператора ==
 {
 	if (!strcmp(s, Str.m_cStr))
 		return true;
 	else
 		return false;
 }
-bool operator != (const char* s, String& Str)
+bool operator != (const char* s, String& Str)				//Глобальная перегрузка оператора !=
 {
 	if (!(strcmp(s, Str.m_cStr)))
 		return false;
 	else
 		return true;
 }
-bool operator > (const char* s, String& Str)
+bool operator > (const char* s, String& Str)				//Глобальная перегрузка >
 {
 	if (strcmp(s, Str.m_cStr) > 0)
 		return true;
 	else
 		return false;
 }
-bool operator < (const char* s, String& Str)
+bool operator < (const char* s, String& Str)				//Глобальная перегрузка <
 {
 	if (strcmp(s, Str.m_cStr) < 0)
 		return true;
